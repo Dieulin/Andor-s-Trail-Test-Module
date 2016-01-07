@@ -1,7 +1,7 @@
 # Prérequis
-A. Télécharger Intellij Idea (moi j'utilise la version 15.0.2)
-B. Télécharger Andor's Trail depuis le dépôt Github : https://github.com/oskarwiksten/andors-trail
-C. Télécharger le module de test depuis le dépôt : https://github.com/Dieulin/CAL-Andor-s-Trail.git
+1. Télécharger Intellij Idea (moi j'utilise la version 15.0.2)
+2. Télécharger Andor's Trail depuis le dépôt Github : https://github.com/oskarwiksten/andors-trail
+3. Télécharger le module de test depuis le dépôt : https://github.com/Dieulin/CAL-Andor-s-Trail.git
 
 
 # Import d'Andor's Trail
