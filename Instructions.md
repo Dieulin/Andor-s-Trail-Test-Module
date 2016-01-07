@@ -29,7 +29,7 @@ Dans la fênetre "Project Structure" : Section "Projet Settings" > Clic sur "Mod
 2. Aller dans "AndorsTrail/libs" > clic droit sur le jar "android-support-v4.jar" > dans le menu selectionner "Add as library..."
 3. Dans la popup "Create Library": Définir la valeur de "Level" à "Project library" | et celle de "Add to module" à "AndorsTrail" > Puis "Ok"
 
-#### Méthode 2
+#### Méthode 2 (Alternative à la méthode 1)
 
 1. "File" > "Project Structure"
 2. Dans la fênetre "Project Structure" : Section "Projet Settings" > "Librairies"
@@ -64,7 +64,7 @@ Dans la fênetre "Project Structure" : Section "Projet Settings" > Clic sur "Mod
 4. Clic droit sur le jar "junit-4.12.jar" > dans le menu selectionner "Add as library..."
 Dans la popup : Définir la valeur de "Level" à Project library | et celle de "Add to module" à "tests"
 
-#### Méthode 2
+#### Méthode 2 (Alternative à la méthode 1)
 1. "File" > "Project Structure"
 2. Dans la fênetre "Project Structure" : Dans la section "Projet Settings" > Selectionner "Librairies"
 3. Clic sur l'icone en forme de plus vert > Puis "Java"
