@@ -83,7 +83,7 @@ Dans la popup : Définir la valeur de "Level" à Project library | et celle de "
 
 
 ## Priorité des dépendences
-1. Toujours dans la tabulation "Dependencies" : Selectionner "Junit-*" et "Hamcrest-*" > Puis avec la flèche du haut déplacer les avant "Android API19 Platform"
+1. Toujours dans la tabulation "Dependencies" : Selectionner "Junit" et "Hamcrest" > Puis avec la flèche du haut déplacer les avant "Android API19 Platform"
   1. Si "libs" est présent dans la liste : déplacer "libs" avant "Android API19 Platform"
 3. Clic sur "Apply" > puis "Ok"
 
