@@ -1,4 +1,4 @@
-# prérequis
+# Prérequis
 A. Télécharger Intellij Idea (moi j'utilise la version 15.0.2)
 B. Télécharger Andor's Trail depuis le dépôt Github : https://github.com/oskarwiksten/andors-trail
 C. Télécharger le module de test depuis le dépôt : https://github.com/Dieulin/CAL-Andor-s-Trail.git
@@ -73,7 +73,7 @@ Dans la popup : Définir la valeur de "Level" à Project library | et celle de "
 8. Dans la fenetre "Chose module" : Selectionner le module "tests"
 
 
-## ajout dependence au module Andor's Trail
+## Ajout dependence au module Andor's Trail
 1. "File" > "Project Structure"
 2. Dans la fênetre "Project Structure" : Dans la section "Projet Settings" sselectionner "Modules" > puis "tests"
 3. Clic sur la tabulation "dependencies"
@@ -81,8 +81,9 @@ Dans la popup : Définir la valeur de "Level" à Project library | et celle de "
 
 
 ## Priorité des dépendences
-1A. Toujours dans la tabulation "Dependencies" : Selectionner "Junit-*" et "Hamcrest-*" > Puis avec la flèche du haut déplacer les avant "Android API19 Platform"
-1B. Si "libs" est présent dans la liste : déplacer "libs" avant "Android API19 Platform"
+1.
+  1. Toujours dans la tabulation "Dependencies" : Selectionner "Junit-*" et "Hamcrest-*" > Puis avec la flèche du haut déplacer les avant "Android API19 Platform"
+  2. Si "libs" est présent dans la liste : déplacer "libs" avant "Android API19 Platform"
 2. Clic sur "Apply" > puis "Ok"
 
 
