@@ -11,6 +11,7 @@
 # Generated files
 bin/
 gen/
+target/
 
 # Gradle files
 .gradle/
@@ -25,3 +26,14 @@ proguard/
 
 # Log Files
 *.log
+
+#IntelliJ
+.idea/
+out/production/
+out/test/
+*.iws
+*.ipr
+
+# Other
+.metadata
+.svn/
