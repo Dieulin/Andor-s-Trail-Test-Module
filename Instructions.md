@@ -56,7 +56,7 @@ Dans la fênetre "Project Structure" : Section "Projet Settings" > Clic sur "Mod
 
 
 # Configuration du module de test
-## ajout dependences de test
+## Ajout dependences de test
 #### Méthode 1
 1. Ouvrir la perspective Project > puis aller dans "tests/libs" (Si vous remarqez un petit triangle noir sur les deaux Jar alors sauter l'étape et aller à B)
 2. Clic droit sur le jar "hamcrest-core-1.3.jar" > dans le menu selectionner "Add as library..."
