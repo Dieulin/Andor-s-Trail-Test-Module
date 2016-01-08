@@ -38,10 +38,6 @@ Dans la fênetre "Project Structure" : Section "Projet Settings" > Clic sur "Mod
 5. Dans la fenetre "Chose modules" : Selectionner le module "AndorsTrail" > Puis clic sur "Apply" > puis "OK"
 
 
-# Ajout La classe TestUtil
-1. Copier la classe "TestUtil.java" (fournit avec le module de test) dans le package "src.com.gpl.rpg.AndorsTrail" du projet "AndorsTrail"
-
-
 # Import du module de test
 1. "File" > "Project Structure" > dans la section "Projet Settings" selectionner "Modules"
 3. Clic sur l'icone en forme de plus vert > puis "Import module"

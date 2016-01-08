@@ -7,12 +7,12 @@ import com.gpl.rpg.AndorsTrail.model.map.PredefinedMap;
 
 public class TestUtils {
 
-    public static ItemType createNonEquipableItemType() {
+    public static ItemType createNonEquipableOrUsableItemType() {
 
         // Properties for ItemCategory :
         String id_cat = "category";
         String displayName = "category 1";
-        ItemCategory.ActionType actionType = ItemCategory.ActionType.use;
+        ItemCategory.ActionType actionType = ItemCategory.ActionType.none;
         Inventory.WearSlot inventorySlot = null;
         ItemCategory.ItemCategorySize size = ItemCategory.ItemCategorySize.large;
 
@@ -38,6 +38,31 @@ public class TestUtils {
         String id_cat = "category";
         String displayName = "category 1";
         ItemCategory.ActionType actionType = ItemCategory.ActionType.equip;
+        Inventory.WearSlot inventorySlot = null;
+        ItemCategory.ItemCategorySize size = ItemCategory.ItemCategorySize.large;
+
+        // Properties for ItemType :
+        String id = "id";
+        int iconID = 1;
+        String name = "name";
+        String description = "description";
+        ItemCategory category = new ItemCategory(id_cat, displayName, actionType, inventorySlot, size);
+        ItemType.DisplayType displayType = ItemType.DisplayType.ordinary;
+        boolean hasManualPrice = true;
+        int fixedBaseMarketCost = 1;
+        ItemTraits_OnEquip effects_equip = null;
+        ItemTraits_OnUse effects_use = null;
+        ItemTraits_OnUse effects_hit = null;
+        ItemTraits_OnUse effects_kill = null;
+
+        return new ItemType(id, iconID, name, description, category, displayType, hasManualPrice, fixedBaseMarketCost, effects_equip, effects_use, effects_hit, effects_kill);
+    }
+
+    public static ItemType createUsableItemType() {
+        // Properties for ItemCategory :
+        String id_cat = "category";
+        String displayName = "category 1";
+        ItemCategory.ActionType actionType = ItemCategory.ActionType.use;
         Inventory.WearSlot inventorySlot = null;
         ItemCategory.ItemCategorySize size = ItemCategory.ItemCategorySize.large;
 

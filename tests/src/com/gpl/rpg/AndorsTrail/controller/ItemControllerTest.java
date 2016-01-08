@@ -39,13 +39,14 @@ public class ItemControllerTest extends AndroidTestCase {
 
         // Retrieve the controller for tests :
         this.itemcontroller = context.itemController;
+
     }
 
     @Test
     public void testDropItemInInventoryWithBiggerQuantity() {
 
         // Create an item :
-        ItemType item = TestUtils.createNonEquipableItemType();
+        ItemType item = TestUtils.createNonEquipableOrUsableItemType();
 
         // Add two items in the inventory :
         this.world.model.player.inventory.addItem(item, 2);
@@ -67,7 +68,7 @@ public class ItemControllerTest extends AndroidTestCase {
     public void testDropItemInInventoryWithCorrectQuantity() {
 
         // Create an item :
-        ItemType item = TestUtils.createNonEquipableItemType();
+        ItemType item = TestUtils.createNonEquipableOrUsableItemType();
 
         // Add two items in the inventory :
         this.world.model.player.inventory.addItem(item, 2);
@@ -89,7 +90,7 @@ public class ItemControllerTest extends AndroidTestCase {
     public void testDropItemNotInInventory() {
 
         // Create an item :
-        ItemType item = TestUtils.createNonEquipableItemType();
+        ItemType item = TestUtils.createNonEquipableOrUsableItemType();
 
         // Try to remove one item :
         this.itemcontroller.dropItem(item, 1);
@@ -144,7 +145,7 @@ public class ItemControllerTest extends AndroidTestCase {
     public void testEquipItemNonEquipableItem() {
 
         // Create an item :
-        ItemType item = TestUtils.createNonEquipableItemType();
+        ItemType item = TestUtils.createNonEquipableOrUsableItemType();
 
         // Add the item in the inventory :
         this.world.model.player.inventory.addItem(item, 1);
@@ -158,4 +159,52 @@ public class ItemControllerTest extends AndroidTestCase {
         // Verification : the player doesn't wear the item :
         assertFalse(this.world.model.player.inventory.isWearing(item.id));
     }
+
+    /**
+     * Test for the method useItem
+     * usage of an unusable item
+     */
+    @Test
+    public void testUseItemNotusableItem() {
+
+        // Create an item
+        ItemType item = TestUtils.createNonEquipableOrUsableItemType();
+
+        // Add the item in the inventory :
+        this.world.model.player.inventory.addItem(item, 1);
+
+        // verify if the item is in the player's inventory
+        assertNotNull(this.world.model.player.inventory.findItem(item.id));
+
+        // use the item
+        this.itemcontroller.useItem(item);
+
+        // verify that the item was not removed from the player's inventory
+        assertNotNull(this.world.model.player.inventory.findItem(item.id));
+    }
+
+    /**
+     * Test for the method useItem
+     * usage of an unusable item
+     */
+    @Test
+    public void testUseItemUsableItem() {
+
+        // Create an item
+        ItemType item = TestUtils.createUsableItemType();
+
+        // Add the item in the player inventory
+        this.world.model.player.inventory.addItem(item, 1);
+
+        // verify if the item is in the player's inventory
+        assertNotNull(this.world.model.player.inventory.findItem(item.id));
+
+        // use the item
+        this.itemcontroller.useItem(item);
+
+        // verify that the item was removed from the player's inventory
+        assertNull(this.world.model.player.inventory.findItem(item.id));
+    }
+
+
 }
