@@ -82,6 +82,64 @@ public class TestUtils {
 
         return new ItemType(id, iconID, name, description, category, displayType, hasManualPrice, fixedBaseMarketCost, effects_equip, effects_use, effects_hit, effects_kill);
     }
+    
+    public static ItemType createEquipableTwoHandWeaponItemType() {
+        // Properties for ItemCategory :
+        String id_cat = "category";
+        String displayName = "category 1";
+        ItemCategory.ActionType actionType = ItemCategory.ActionType.equip;
+        Inventory.WearSlot inventorySlot = Inventory.WearSlot.weapon;
+        ItemCategory.ItemCategorySize size = ItemCategory.ItemCategorySize.large;
+
+        // Properties for ItemTraits_OnEquip
+        AbilityModifierTraits ability = new AbilityModifierTraits(2,2,2,2,2,2,2,2,2,2,2,2,2);
+        ItemTraits_OnEquip onequip = new ItemTraits_OnEquip(ability, null);
+
+        // Properties for ItemType :
+        String id = "id";
+        int iconID = 1;
+        String name = "name";
+        String description = "description";
+        ItemCategory category = new ItemCategory(id_cat, displayName, actionType, inventorySlot, size);
+        ItemType.DisplayType displayType = ItemType.DisplayType.ordinary;
+        boolean hasManualPrice = true;
+        int fixedBaseMarketCost = 1;
+        ItemTraits_OnEquip effects_equip = onequip;
+        ItemTraits_OnUse effects_use = null;
+        ItemTraits_OnUse effects_hit = null;
+        ItemTraits_OnUse effects_kill = null;
+
+        return new ItemType(id, iconID, name, description, category, displayType, hasManualPrice, fixedBaseMarketCost, effects_equip, effects_use, effects_hit, effects_kill);
+    }
+
+    public static ItemType createEquipableShieldItemType() {
+        // Properties for ItemCategory :
+        String id_cat = "category";
+        String displayName = "category 1";
+        ItemCategory.ActionType actionType = ItemCategory.ActionType.equip;
+        Inventory.WearSlot inventorySlot = Inventory.WearSlot.shield;
+        ItemCategory.ItemCategorySize size = ItemCategory.ItemCategorySize.std;
+
+        // Properties for ItemTraits_OnEquip
+        AbilityModifierTraits ability = new AbilityModifierTraits(2,2,2,2,2,2,2,2,2,2,2,2,2);
+        ItemTraits_OnEquip onequip = new ItemTraits_OnEquip(ability, null);
+
+        // Properties for ItemType :
+        String id = "id";
+        int iconID = 1;
+        String name = "name";
+        String description = "description";
+        ItemCategory category = new ItemCategory(id_cat, displayName, actionType, inventorySlot, size);
+        ItemType.DisplayType displayType = ItemType.DisplayType.ordinary;
+        boolean hasManualPrice = true;
+        int fixedBaseMarketCost = 1;
+        ItemTraits_OnEquip effects_equip = onequip;
+        ItemTraits_OnUse effects_use = null;
+        ItemTraits_OnUse effects_hit = null;
+        ItemTraits_OnUse effects_kill = null;
+
+        return new ItemType(id, iconID, name, description, category, displayType, hasManualPrice, fixedBaseMarketCost, effects_equip, effects_use, effects_hit, effects_kill);
+    }
 
     public static PredefinedMap createPredefinedMap() {
         int xmlResourceId = 1;
