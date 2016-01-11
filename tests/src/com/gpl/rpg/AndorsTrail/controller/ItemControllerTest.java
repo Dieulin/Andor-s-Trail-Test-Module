@@ -159,6 +159,123 @@ public class ItemControllerTest extends AndroidTestCase {
         // Verification : the player doesn't wear the item :
         assertFalse(this.world.model.player.inventory.isWearing(item.id));
     }
+    
+        @Test
+    public void testEquipItemInCombatTooBigReequipCost() {
+
+        // Create an item :
+        ItemType item = ToolsForTests.createEquipableItemType();
+
+        // Add the item in the inventory :
+        world.model.player.inventory.addItem(item, 1);
+
+        // Change isInCombat to "true"
+        world.model.uiSelections.isInCombat = true;
+
+        // Change player attributes
+        Player player = world.model.player;
+        player.ap.current = 2; // not enough to reequip in combat
+        player.reequipCost = 4;
+
+        // Verification : the item is in the inventory :
+        assertEquals(1, world.model.player.inventory.getItemQuantity(item.id));
+
+        // Try to equip the player with the item :
+        itemcontroller.equipItem(item, Inventory.WearSlot.body);
+
+        // Verification : the player doesn't wear the item :
+        assertFalse(world.model.player.inventory.isWearing(item.id));
+
+    }
+
+    @Test
+    public void testEquipItemEnoughToReequipDuringCombat() {
+
+        // Create an item :
+        ItemType item = ToolsForTests.createEquipableItemType();
+
+        // Add the item in the inventory :
+        world.model.player.inventory.addItem(item, 1);
+
+        // Change isInCombat to "true"
+        world.model.uiSelections.isInCombat = true;
+
+        // Change player attributes
+        Player player = world.model.player;
+        player.ap.current = 4; // enough to reequip in combat
+        player.reequipCost = 2;
+
+        // Verification : the item is in the inventory :
+        assertEquals(1, world.model.player.inventory.getItemQuantity(item.id));
+
+        // Try to equip the player with the item :
+        itemcontroller.equipItem(item, Inventory.WearSlot.body);
+
+        // Verification : the player wears the item :
+        assertTrue(world.model.player.inventory.isWearing(item.id));
+
+        // Verification : now the item isn't the inventory :
+        assertEquals(0, world.model.player.inventory.getItemQuantity(item.id));
+
+    }
+
+    @Test
+    public void testEquipItemShieldAlreadyWearAShield() {
+
+        // Create a two hand weapon :
+        ItemType twohand = ToolsForTests.createEquipableTwoHandWeaponItemType();
+        // Create a shield :
+        ItemType shield = ToolsForTests.createEquipableShieldItemType();
+
+        // Add the shield in the inventory :
+        world.model.player.inventory.addItem(shield, 1);
+        // Add the weapon in the inventory :
+        world.model.player.inventory.addItem(twohand, 1);
+
+        // Equip the player with the two hand weapon
+        itemcontroller.equipItem(twohand, Inventory.WearSlot.weapon);
+
+        // Verification : the player wears the weapon
+        assertEquals(twohand, world.model.player.inventory.getItemTypeInWearSlot(Inventory.WearSlot.weapon));
+        assertNull(world.model.player.inventory.getItemTypeInWearSlot(Inventory.WearSlot.shield));
+
+        // Equip the player with the shield
+        itemcontroller.equipItem(shield, Inventory.WearSlot.shield);
+
+        // Verification : the player wears the shield
+        assertNull(world.model.player.inventory.getItemTypeInWearSlot(Inventory.WearSlot.weapon));
+        assertEquals(shield, world.model.player.inventory.getItemTypeInWearSlot(Inventory.WearSlot.shield));
+
+    }
+
+
+    @Test
+    public void testEquipItemTwoHandWeeaponAlreadyWearAShield() {
+        // Create a two hand weapon :
+        ItemType twohand = ToolsForTests.createEquipableTwoHandWeaponItemType();
+        // Create a shield :
+        ItemType shield = ToolsForTests.createEquipableShieldItemType();
+
+        // Add the shield in the inventory :
+        world.model.player.inventory.addItem(shield, 1);
+        // Add the weapon in the inventory :
+        world.model.player.inventory.addItem(twohand, 1);
+
+        // Equip the player with the shield
+        itemcontroller.equipItem(shield, Inventory.WearSlot.shield);
+
+        // Verification : the player wears the shield
+        assertEquals(shield, world.model.player.inventory.getItemTypeInWearSlot(Inventory.WearSlot.shield));
+        assertNull(world.model.player.inventory.getItemTypeInWearSlot(Inventory.WearSlot.weapon));
+
+        // Equip the player with the two hand weapon
+        itemcontroller.equipItem(twohand, Inventory.WearSlot.weapon);
+
+        // Verification : the player wears the weapon
+        assertNull(world.model.player.inventory.getItemTypeInWearSlot(Inventory.WearSlot.shield));
+        assertEquals(twohand, world.model.player.inventory.getItemTypeInWearSlot(Inventory.WearSlot.weapon));
+
+    }
 
     /**
      * Test for the method useItem
