@@ -33,15 +33,15 @@ Nous avons décidé de tester les fonnctionnalités du contrôleur ItemControlle
         retour attendu : le joueur est équipé de cette arme
 
 3. Action: void unequipSlot(ItemType type, Inventory.WearSlot slot) :
-    - scénario1 : On essaye de deséquiper le personnage avec un élément qui ne se porte pas
+    - scénario1 : On essaye de deséquiper le personnage avec un élément qui ne se porte pas (FAIT)
         * retour attendu : aucun effet sur l'équipement du joueur
-    - scénario2 : On essaye de deséquiper le personnage alors qu'il n'a aucun equipement
+    - scénario2 : On essaye de deséquiper le personnage alors qu'il n'a aucun equipement (FAIT)
         * retour attendu : aucun effet sur l'équipement du joueur
-    - scénario3 : On essaye de se deséquiper en plein combat d'un élément usé
+    - scénario3 : On essaye de se deséquiper en plein combat d'un élément usé (FAIT)
         * retour attendu : le joueur ne porte plus élément
-    - scénario4 : On essaye de se deséquiper en plein combat d'un élément pas usé
+    - scénario4 : On essaye de se deséquiper en plein combat d'un élément pas usé (FAIT)
         * retour attendu : aucun effet sur l'équipement du joueur
-    - scénario5 : On essaye de deséquiper le joueur d'un élement
+    - scénario5 : On essaye de deséquiper le joueur d'un élement (FAIT)
         * retour attendu : le joueur ne porte l'élément et celui-ci retombe dans l'inventaire
 
 4. Action: void useItem(ItemType type)
