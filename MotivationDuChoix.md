@@ -11,7 +11,7 @@ CAL - Maintenance et évolution
 Nous avons décidé de tester les fonnctionnalités du contrôleur ItemController. En particulier les fonctionnalités des actions dropItem, equipItem unequipSlot et useItem.
 
 1. Action: void dropItem(ItemType type, int quantity) :
-    - scénario1 : On retire un item avec une quantité q possible (Fait)
+    - scénario1 : On retire un item avec une quantité q possible <span style="color:green;">(Fait)</span>
         * retour attendu : le joueur a q items en moins dans son inventaire
     -scénario2 : On retire un item avec une quantité supérieure à ce qui est possible (Fait)
         * retour attendu : aucun effet sur l'inventaire
