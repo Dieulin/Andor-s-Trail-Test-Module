@@ -5,6 +5,7 @@ import com.gpl.rpg.AndorsTrail.AndorsTrailApplication;
 import com.gpl.rpg.AndorsTrail.context.ControllerContext;
 import com.gpl.rpg.AndorsTrail.context.WorldContext;
 import com.gpl.rpg.AndorsTrail.model.ModelContainer;
+import com.gpl.rpg.AndorsTrail.model.actor.Player;
 import com.gpl.rpg.AndorsTrail.model.item.Inventory;
 import com.gpl.rpg.AndorsTrail.model.item.ItemType;
 import com.gpl.rpg.AndorsTrail.model.map.PredefinedMap;
@@ -164,7 +165,7 @@ public class ItemControllerTest extends AndroidTestCase {
     public void testEquipItemInCombatTooBigReequipCost() {
 
         // Create an item :
-        ItemType item = ToolsForTests.createEquipableItemType();
+        ItemType item = TestUtils.createEquipableItemType();
 
         // Add the item in the inventory :
         world.model.player.inventory.addItem(item, 1);
@@ -192,7 +193,7 @@ public class ItemControllerTest extends AndroidTestCase {
     public void testEquipItemEnoughToReequipDuringCombat() {
 
         // Create an item :
-        ItemType item = ToolsForTests.createEquipableItemType();
+        ItemType item = TestUtils.createEquipableItemType();
 
         // Add the item in the inventory :
         world.model.player.inventory.addItem(item, 1);
@@ -223,9 +224,9 @@ public class ItemControllerTest extends AndroidTestCase {
     public void testEquipItemShieldAlreadyWearAShield() {
 
         // Create a two hand weapon :
-        ItemType twohand = ToolsForTests.createEquipableTwoHandWeaponItemType();
+        ItemType twohand = TestUtils.createEquipableTwoHandWeaponItemType();
         // Create a shield :
-        ItemType shield = ToolsForTests.createEquipableShieldItemType();
+        ItemType shield = TestUtils.createEquipableShieldItemType();
 
         // Add the shield in the inventory :
         world.model.player.inventory.addItem(shield, 1);
@@ -252,9 +253,9 @@ public class ItemControllerTest extends AndroidTestCase {
     @Test
     public void testEquipItemTwoHandWeeaponAlreadyWearAShield() {
         // Create a two hand weapon :
-        ItemType twohand = ToolsForTests.createEquipableTwoHandWeaponItemType();
+        ItemType twohand = TestUtils.createEquipableTwoHandWeaponItemType();
         // Create a shield :
-        ItemType shield = ToolsForTests.createEquipableShieldItemType();
+        ItemType shield = TestUtils.createEquipableShieldItemType();
 
         // Add the shield in the inventory :
         world.model.player.inventory.addItem(shield, 1);
@@ -321,6 +322,28 @@ public class ItemControllerTest extends AndroidTestCase {
 
         // verify that the item was removed from the player's inventory
         assertNull(this.world.model.player.inventory.findItem(item.id));
+    }
+
+    /**
+     * Test for the method useItem
+     * usage of implied item used list
+     */
+    @Test
+    public void testUseItemItemHasBeenUsed() {
+
+        // Create an item
+        ItemType item = TestUtils.createUsableItemType();
+
+        // Add the item in the player inventory
+        this.world.model.player.inventory.addItem(item, 1);
+
+        // verify if the item is in the player's inventory
+        assertNotNull(this.world.model.player.inventory.findItem(item.id));
+
+        // use the item
+        this.itemcontroller.useItem(item);
+
+        assertEquals(this.world.model.statistics.getNumberOfTimesItemHasBeenUsed(item.id), 1);
     }
 
 
