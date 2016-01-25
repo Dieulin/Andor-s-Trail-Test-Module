@@ -165,7 +165,7 @@ public class ItemControllerTest extends AndroidTestCase {
     public void testEquipItemInCombatTooBigReequipCost() {
 
         // Create an item :
-        ItemType item = ToolsForTests.createEquipableItemType();
+        ItemType item = TestUtils.createEquipableItemType();
 
         // Add the item in the inventory :
         world.model.player.inventory.addItem(item, 1);
@@ -193,7 +193,7 @@ public class ItemControllerTest extends AndroidTestCase {
     public void testEquipItemEnoughToReequipDuringCombat() {
 
         // Create an item :
-        ItemType item = ToolsForTests.createEquipableItemType();
+        ItemType item = TestUtils.createEquipableItemType();
 
         // Add the item in the inventory :
         world.model.player.inventory.addItem(item, 1);
@@ -224,9 +224,9 @@ public class ItemControllerTest extends AndroidTestCase {
     public void testEquipItemShieldAlreadyWearAShield() {
 
         // Create a two hand weapon :
-        ItemType twohand = ToolsForTests.createEquipableTwoHandWeaponItemType();
+        ItemType twohand = TestUtils.createEquipableTwoHandWeaponItemType();
         // Create a shield :
-        ItemType shield = ToolsForTests.createEquipableShieldItemType();
+        ItemType shield = TestUtils.createEquipableShieldItemType();
 
         // Add the shield in the inventory :
         world.model.player.inventory.addItem(shield, 1);
@@ -253,9 +253,9 @@ public class ItemControllerTest extends AndroidTestCase {
     @Test
     public void testEquipItemTwoHandWeeaponAlreadyWearAShield() {
         // Create a two hand weapon :
-        ItemType twohand = ToolsForTests.createEquipableTwoHandWeaponItemType();
+        ItemType twohand = TestUtils.createEquipableTwoHandWeaponItemType();
         // Create a shield :
-        ItemType shield = ToolsForTests.createEquipableShieldItemType();
+        ItemType shield = TestUtils.createEquipableShieldItemType();
 
         // Add the shield in the inventory :
         world.model.player.inventory.addItem(shield, 1);
