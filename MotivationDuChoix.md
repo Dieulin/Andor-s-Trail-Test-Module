@@ -19,17 +19,17 @@ Nous avons décidé de tester les fonnctionnalités du contrôleur ItemControlle
         * retour attendu: apparemment un crash car pas de catch !
 
 2. Action: void equipItem(ItemType type, Inventory.WearSlot slot) :
-    - scénario1 : On essaye de s'équiper d'un item durant un combat alors que celui-ci n'est pas usé
+    - scénario1 : On essaye de s'équiper d'un item durant un combat alors que celui-ci n'est pas usé (Fait)
         * retour attendu : aucun effet sur l'équipement du joueur
-    - scénario2 : On essaye de s'équiper d'un item durant un combat alors que celui-ci est usé
+    - scénario2 : On essaye de s'équiper d'un item durant un combat alors que celui-ci est usé (Fait)
         * retour attendu : le joueur est équipé avec cet item
     - scénario3 : On essaye de s'équiper d'un item qu'on a pas (Fait)
         * retour attendu : aucun effet sur l'équipement du joueur
-    - scénario4 : On s'équipe d'une arme a deux mains en ayant un bouclier sur le joueur
+    - scénario4 : On s'équipe d'une arme a deux mains en ayant un bouclier sur le joueur (Fait)
         * retour attendu : le joueur ne porte plus le bouclier et celui-ci retombe dans l'inventaire
-    - scénario5 : On  s'équipe d'un bouclier en ayant une arme a deux mains
+    - scénario5 : On  s'équipe d'un bouclier en ayant une arme a deux mains (Fait)
         * retour attendu : le joueur ne porte plus l'arme et celui-ci retombe dans l'inventaire
-    - scénario6 : On s'équipe d'une arme
+    - scénario6 : On s'équipe d'une arme (Fait)
         retour attendu : le joueur est équipé de cette arme
 
 3. Action: void unequipSlot(ItemType type, Inventory.WearSlot slot) :
