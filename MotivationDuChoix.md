@@ -49,7 +49,7 @@ Nous avons décidé de tester les fonnctionnalités du contrôleur ItemControlle
         * retour attendu : aucun effet sur le joueur
     - scénario2 : On essaye d'utiliser un élément utilisable (Fait)
         * retour attendu : le joueur ne porte plus élément et les effets de l'élément sont appliqués
-    - scénario3 : On essaye d'utiliser un élement qui n'est pas totalement consommé
-        * retour attendu : aucun changement
+    - scénario3 : On utilise un élement utilisable (Fait)
+        * retour attendu : l'élément est ajouté à la liste des éléments utilisés 
     - scénario4 : On essaye d'utiliser un élement qui est totalement consommé 
         * retour attendu : plus d'élément dans l'inventaire
