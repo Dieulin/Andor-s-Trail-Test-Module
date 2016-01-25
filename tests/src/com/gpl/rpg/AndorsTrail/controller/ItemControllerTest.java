@@ -347,4 +347,113 @@ public class ItemControllerTest extends AndroidTestCase {
     }
 
 
+    @Test
+    /*
+    On essaie de déséquiper le personnage avec un élément qui ne se porte pas
+    -> Aucun effet sur l'équipement
+     */
+    public void testUnequipSlotWithNoWearItem() throws Exception {
+        // Etant donné un item qui ne peut être déséquipé
+        ItemType noWearingItem = TestUtils.createUsableItemType();
+
+        // et le personnage est équipé d'un item équipable
+        ItemType wearingItem = TestUtils.createEquipableItemType();
+        world.model.player.inventory.addItem(wearingItem, 1);
+        itemcontroller.equipItem(wearingItem, Inventory.WearSlot.body);
+        assertTrue(world.model.player.inventory.isWearing(wearingItem.id));
+
+        // Quand on tente de déséquiper le personnage d'un item qui ne s'équipe pas
+        itemcontroller.unequipSlot(noWearingItem, Inventory.WearSlot.body);
+
+        // Alors le personnage n'est pas déséquipé
+        assertTrue(world.model.player.inventory.isWearing(wearingItem.id));
+        assertFalse(world.model.player.inventory.isWearing(noWearingItem.id));
+    }
+
+    @Test
+    /*
+    On essaie de déséquiper le personnage alors qu'il n'a aucun équipement
+    -> Aucun effet sur l'équipement
+     */
+    public void testUnequipSlotWithAnyItem() throws Exception {
+        // Etant donné un item qui peut être équipé/déséquipé
+        ItemType wearingItem = TestUtils.createEquipableItemType();
+
+        // et le personnage n'est pas équipé d'un item
+        assertFalse(world.model.player.inventory.isWearing(wearingItem.id));
+
+        // Quand on tente de déséquiper le personnage qui n'est pas équipé
+        itemcontroller.unequipSlot(wearingItem, Inventory.WearSlot.body);
+
+        // Alors le personnage n'est pas déséquipé
+        assertFalse(world.model.player.inventory.isWearing(wearingItem.id));
+    }
+
+    @Test
+    /*
+    On essaie de déséquiper le personnage d'un élément usé en plein combat
+    -> Le joueur ne porte plus l'élément
+     */
+    public void testUnequipSlotInCombatWithUsedItem() throws Exception {
+        // Etant donné un item qui peut être équipé/déséquipé
+        ItemType wearingItem = TestUtils.createEquipableItemType();
+        // le personnage est en combat
+        world.model.uiSelections.isInCombat = true;
+        // et porte cet item
+        world.model.player.inventory.addItem(wearingItem, 1);
+        itemcontroller.equipItem(wearingItem, Inventory.WearSlot.body);
+        assertTrue(world.model.player.inventory.isWearing(wearingItem.id));
+        itemcontroller.useItem(wearingItem);
+
+        // Quand on déséquipe le personnage de cet item
+        itemcontroller.unequipSlot(wearingItem, Inventory.WearSlot.body);
+
+        // Alors on vérifie que l'item a bien été déséquipé
+        assertFalse(world.model.player.inventory.isWearing(wearingItem.id));
+    }
+
+    @Test
+    /*
+    On essaie de déséquiper le personnage d'un élément non usé en plein combat
+    -> Aucun effet sur l'équipement
+     */
+    public void testUnequipSlotInCombatWithInusedItem() throws Exception {
+        // Etant donné un item qui peut être équipé/déséquipé
+        ItemType wearingItem = TestUtils.createEquipableItemType();
+        // le personnage est en combat
+        world.model.uiSelections.isInCombat = true;
+        // et porte cet item
+        world.model.player.inventory.addItem(wearingItem, 1);
+        itemcontroller.equipItem(wearingItem, Inventory.WearSlot.body);
+        assertTrue(world.model.player.inventory.isWearing(wearingItem.id));
+
+        // Quand on déséquipe le personnage de cet item
+        itemcontroller.unequipSlot(wearingItem, Inventory.WearSlot.body);
+
+        // Alors on vérifie que l'item a bien été déséquipé
+        assertFalse(world.model.player.inventory.isWearing(wearingItem.id));
+    }
+
+    @Test
+    /*
+    On essaie de déséquiper le personnage d'un élément
+    -> Le joueur ne porte plus l'élément et l'élément est retombé dans son inventaire
+     */
+    public void testUnequipSlotAndItemGoesToInventory() throws Exception {
+        // Etant donné un item qui peut être équipé/déséquipé
+        ItemType wearingItem = TestUtils.createEquipableItemType();
+        // et le personnage porte cet item
+        world.model.player.inventory.addItem(wearingItem, 1);
+        itemcontroller.equipItem(wearingItem, Inventory.WearSlot.body);
+        assertTrue(world.model.player.inventory.isWearing(wearingItem.id));
+
+        // Quand on déséquipe le joueur de cet item
+        itemcontroller.unequipSlot(wearingItem, Inventory.WearSlot.body);
+
+        // Alors on vérifie que le joueur ne porte plus l'item
+        assertFalse(world.model.player.inventory.isWearing(wearingItem.id));
+        // et l'item est revenu dans l'inventaire du joueur
+        assertTrue(world.model.player.inventory.hasItem(wearingItem.id));
+    }
+
 }
