@@ -418,7 +418,20 @@ public class ItemControllerTest extends AndroidTestCase {
     -> Le joueur ne porte plus l'élément et l'élément est retombé dans son inventaire
      */
     public void testUnequipSlotAndItemGoesToInventory() throws Exception {
+        // Etant donné un item qui peut être équipé/déséquipé
+        ItemType wearingItem = TestUtils.createEquipableItemType();
+        // et le personnage porte cet item
+        world.model.player.inventory.addItem(wearingItem, 1);
+        itemcontroller.equipItem(wearingItem, Inventory.WearSlot.body);
+        assertTrue(world.model.player.inventory.isWearing(wearingItem.id));
 
+        // Quand on déséquipe le joueur de cet item
+        itemcontroller.unequipSlot(wearingItem, Inventory.WearSlot.body);
+
+        // Alors on vérifie que le joueur ne porte plus l'item
+        assertFalse(world.model.player.inventory.isWearing(wearingItem.id));
+        // et l'item est revenu dans l'inventaire du joueur
+        assertTrue(world.model.player.inventory.hasItem(wearingItem.id));
     }
 
 }
