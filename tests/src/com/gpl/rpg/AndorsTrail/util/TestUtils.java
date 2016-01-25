@@ -42,7 +42,7 @@ public class TestUtils {
         ItemCategory.ItemCategorySize size = ItemCategory.ItemCategorySize.large;
 
         // Properties for ItemType :
-        String id = "id";
+        String id = "id1";
         int iconID = 1;
         String name = "name";
         String description = "description";
@@ -67,7 +67,7 @@ public class TestUtils {
         ItemCategory.ItemCategorySize size = ItemCategory.ItemCategorySize.large;
 
         // Properties for ItemType :
-        String id = "id";
+        String id = "id2";
         int iconID = 1;
         String name = "name";
         String description = "description";
@@ -96,7 +96,7 @@ public class TestUtils {
         ItemTraits_OnEquip onequip = new ItemTraits_OnEquip(ability, null);
 
         // Properties for ItemType :
-        String id = "id";
+        String id = "id3";
         int iconID = 1;
         String name = "name";
         String description = "description";
@@ -125,7 +125,7 @@ public class TestUtils {
         ItemTraits_OnEquip onequip = new ItemTraits_OnEquip(ability, null);
 
         // Properties for ItemType :
-        String id = "id";
+        String id = "id4";
         int iconID = 1;
         String name = "name";
         String description = "description";
