@@ -373,7 +373,21 @@ public class ItemControllerTest extends AndroidTestCase {
     -> Le joueur ne porte plus l'élément
      */
     public void testUnequipSlotInCombatWithUsedItem() throws Exception {
+        // Etant donné un item qui peut être équipé/déséquipé
+        ItemType wearingItem = TestUtils.createEquipableItemType();
+        // le personnage est en combat
+        world.model.uiSelections.isInCombat = true;
+        // et porte cet item
+        world.model.player.inventory.addItem(wearingItem, 1);
+        itemcontroller.equipItem(wearingItem, Inventory.WearSlot.body);
+        assertTrue(world.model.player.inventory.isWearing(wearingItem.id));
+        itemcontroller.useItem(wearingItem);
 
+        // Quand on déséquipe le personnage de cet item
+        itemcontroller.unequipSlot(wearingItem, Inventory.WearSlot.body);
+
+        // Alors on vérifie que l'item a bien été déséquipé
+        assertFalse(world.model.player.inventory.isWearing(wearingItem.id));
     }
 
     @Test
@@ -382,7 +396,20 @@ public class ItemControllerTest extends AndroidTestCase {
     -> Aucun effet sur l'équipement
      */
     public void testUnequipSlotInCombatWithInusedItem() throws Exception {
+        // Etant donné un item qui peut être équipé/déséquipé
+        ItemType wearingItem = TestUtils.createEquipableItemType();
+        // le personnage est en combat
+        world.model.uiSelections.isInCombat = true;
+        // et porte cet item
+        world.model.player.inventory.addItem(wearingItem, 1);
+        itemcontroller.equipItem(wearingItem, Inventory.WearSlot.body);
+        assertTrue(world.model.player.inventory.isWearing(wearingItem.id));
 
+        // Quand on déséquipe le personnage de cet item
+        itemcontroller.unequipSlot(wearingItem, Inventory.WearSlot.body);
+
+        // Alors on vérifie que l'item a bien été déséquipé
+        assertFalse(world.model.player.inventory.isWearing(wearingItem.id));
     }
 
     @Test
