@@ -1,55 +1,55 @@
-# MOTIVATION DU CHOIX DE LA PARTIE TESTEE
+# MOTIVATION OF CHOICE OF THIS PART TESTED
 
-CAL - Maintenance et évolution
+CAL - Maintenance and evolution
 
-* Groupe : 
-	* Jean Baptiste DELAETER
+* Group : 
+	* Jean-Baptiste DELAETER
 	* Pauline DESSINGUE
 	* Dieulin MAMBOUANA
 	* Thibaud VERBAERE
 
-Nous avons décidé de tester les fonnctionnalités du contrôleur ItemController. En particulier les fonctionnalités des actions dropItem, equipItem unequipSlot et useItem.
+We decided to test the functionalities of ItemController. In particular the functionalities on the following actions : dropItem, equipItem, unequipSlot and useItem.
 
 1. Action: void dropItem(ItemType type, int quantity) :
-    - scénario1 : On retire un item avec une quantité q possible (Fait)
-        * retour attendu : le joueur a q items en moins dans son inventaire
-    -scénario2 : On retire un item avec une quantité supérieure à ce qui est possible (Fait)
-        * retour attendu : aucun effet sur l'inventaire
-    -scénario3 : On essaye de retirer un item non contenu dans l'inventaire de l'utilisateur (Fait)
-        * retour attendu: apparemment un crash car pas de catch !
+    - Scenario 1 : We remove an item with a quantity q possible (Done)
+        * expected return : the player has q items in less in his inventory
+    - Scenario 2 : We try to removed an item with a quantity greater than what is possible (Done)
+        * expected return : no effect on the inventory 
+    - Scenario 3 : We try to removed an item not contained in the user's inventory (Done)
+        * expected return : apparently a crash because there's no catch !
 
 2. Action: void equipItem(ItemType type, Inventory.WearSlot slot) :
-    - scénario1 : On essaye de s'équiper d'un item durant un combat alors que celui-ci n'est pas usé (Fait)
-        * retour attendu : aucun effet sur l'équipement du joueur
-    - scénario2 : On essaye de s'équiper d'un item durant un combat alors que celui-ci est usé (Fait)
-        * retour attendu : le joueur est équipé avec cet item
-    - scénario3 : On essaye de s'équiper d'un item qu'on a pas (Fait)
-        * retour attendu : aucun effet sur l'équipement du joueur
-    - scénario4 : On s'équipe d'une arme a deux mains en ayant un bouclier sur le joueur (Fait)
-        * retour attendu : le joueur ne porte plus le bouclier et celui-ci retombe dans l'inventaire
-    - scénario5 : On  s'équipe d'un bouclier en ayant une arme a deux mains (Fait)
-        * retour attendu : le joueur ne porte plus l'arme et celui-ci retombe dans l'inventaire
-    - scénario6 : On s'équipe d'une arme (Fait)
-        retour attendu : le joueur est équipé de cette arme
+    - Scenario 1 : We try to equip the player with an item during a combat whereas this item is not worn (Done)
+        * expected return : no effect on the player's equipment
+    - Scenario 2 : We try to equip the player with an item during a combat whereas this item is worn (Done)
+        * expected return : the  player is equipped with this item 
+    - Scenario 3 : We try to equip the player with an item that we don't have (Done)
+        * expected return : no effect on the player's equipment
+    - Scenario 4 : We equip the player with a two-handed weapon while having a shield on the player (Done)
+        * expected return : the shield falls back in the inventory
+    - Scenario 5 : We equip the player with a shield while having a two-handed weapon on the player (Done)
+        * expected return : the two-handed weapon falls back in the inventory
+    - Scenario 6 : We equip the player with a weapon (Done)
+        * expected return : the player is equipped with this weapon
 
 3. Action: void unequipSlot(ItemType type, Inventory.WearSlot slot) :
-    - scénario1 : On essaye de deséquiper le personnage avec un élément qui ne se porte pas (FAIT)
-        * retour attendu : aucun effet sur l'équipement du joueur
-    - scénario2 : On essaye de deséquiper le personnage alors qu'il n'a aucun equipement (FAIT)
-        * retour attendu : aucun effet sur l'équipement du joueur
-    - scénario3 : On essaye de se deséquiper en plein combat d'un élément usé (FAIT)
-        * retour attendu : le joueur ne porte plus élément
-    - scénario4 : On essaye de se deséquiper en plein combat d'un élément pas usé (FAIT)
-        * retour attendu : aucun effet sur l'équipement du joueur
-    - scénario5 : On essaye de deséquiper le joueur d'un élement (FAIT)
-        * retour attendu : le joueur ne porte l'élément et celui-ci retombe dans l'inventaire
+    - Scenario 1 : We try to remove an element from the player that he cannot put (Done)
+        * expected return : no effect on the player's equipment
+    - Scenario 2 : We try to remove an element from the player while he has no equipment (Done)
+        * expected return : no effect on the player's equipment
+    - Scenario 3 : We try to remove an used element from the player during a fight (Done)
+        * expected return : the player no longer wears the item
+    - Scenario 4 : We try to remove an element from the player during a fight (Done)
+        * expected return : no effect on the player's equipment
+    - Scenario 5 : We try to remove an element from the player (Done)
+        * expected return : the player no longer wears the item et and the item falls back in the inventory
 
 4. Action: void useItem(ItemType type)
-    - scénario1 : On essaye d'utiliser un élément qui n'est pas utilisable (Fait)
-        * retour attendu : aucun effet sur le joueur
-    - scénario2 : On essaye d'utiliser un élément utilisable (Fait)
-        * retour attendu : le joueur ne porte plus élément et les effets de l'élément sont appliqués
-    - scénario3 : On utilise un élement utilisable (Fait)
-        * retour attendu : l'élément est ajouté à la liste des éléments utilisés 
-    - scénario4 : On essaye d'utiliser un élement qui est totalement consommé 
-        * retour attendu : plus d'élément dans l'inventaire
+    - Scenario 1 : We try to use an item who is not usable (Done)
+        * expected return : no effect on the player
+    - Scenario 2 : We try to use an item who is usable (Done)
+        * expected return : the player no longer wears the item and the effect of the item are applied
+    - Scenario 3 : We use an usable item (Done)
+        * expected return : the item is added to the list of items used 
+    - Scenario 4 : We try to use an item who is totally consumed
+        * expected return : the item has been removed from the inventory
